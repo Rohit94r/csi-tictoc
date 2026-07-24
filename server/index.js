@@ -5,13 +5,9 @@ import cors from 'cors';
 
 const PORT = process.env.PORT || 3001;
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://127.0.0.1:5173',
-  ...(process.env.CLIENT_URL
-    ? process.env.CLIENT_URL.split(',').map((url) => url.trim())
-    : []),
-];
+const allowedOrigins = process.env.CLIENT_URL
+  ? process.env.CLIENT_URL.split(',').map((url) => url.trim())
+  : true; // allow all origins locally (phone on same Wi‑Fi/hotspot)
 
 const app = express();
 app.use(cors({ origin: allowedOrigins }));
@@ -207,6 +203,6 @@ io.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(PORT, () => {
-  console.log(`Tick Tock Server running on port ${PORT}`);
+httpServer.listen(PORT, '0.0.0.0', () => {
+  console.log(`Tick Tock Server running on http://0.0.0.0:${PORT}`);
 });
