@@ -1,38 +1,31 @@
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  max-width: 320px;
+  gap: 6px;
+  max-width: 300px;
   margin: 0 auto;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px;
+  border: 1px solid #222;
 }
 
 .board--inactive {
-  opacity: 0.7;
-  pointer-events: none;
+  opacity: 0.55;
 }
 
 .board__cell {
   aspect-ratio: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
+  background: #000;
+  border: 1px solid #333;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .board__cell:not(:disabled):hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: scale(1.03);
+  border-color: #fff;
+  background: #111;
 }
 
 .board__cell:disabled {
@@ -40,36 +33,27 @@
 }
 
 .board__cell--filled {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: #555;
 }
 
 .board__cell--win {
-  animation: pulse 0.8s ease-in-out infinite;
-  border-color: #ffd700;
-  background: rgba(255, 215, 0, 0.1);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  background: #fff;
+  border-color: #fff;
+}
+
+.board__cell--win .board__mark {
+  color: #000;
 }
 
 .board__mark {
-  font-size: 48px;
-  font-weight: 800;
-  animation: bounceIn 0.4s ease;
+  font-size: 42px;
+  font-weight: 700;
   line-height: 1;
+  color: #fff;
+  animation: bounceIn 0.25s ease;
 }
 
-.board__mark--X {
-  background: linear-gradient(135deg, #ff00de, #7b2ff7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: none;
-}
-
+.board__mark--X,
 .board__mark--O {
-  background: linear-gradient(135deg, #00fff9, #00d4ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: none;
+  color: #fff;
 }

@@ -62,25 +62,22 @@ export default function Game({ socket, clubCode, playerSymbol, onLeave }) {
 
   const headerText = gameOver
     ? gameOver.winner === null
-      ? "It's a Tie! 🤝"
+      ? "It's a Tie"
       : gameOver.winner === playerSymbol
-      ? 'You Won! 👑'
-      : 'You Lost! 😿'
+      ? 'You Won'
+      : 'You Lost'
     : opponentDisconnected
-    ? 'Opponent Left 😢'
+    ? 'Opponent Left'
     : currentTurn === playerSymbol
-    ? 'Your Turn!'
+    ? 'Your Turn'
     : "Opponent's Turn";
 
   return (
     <div className="game">
-      <div className="game__bg-circle game__bg-circle--1" />
-      <div className="game__bg-circle game__bg-circle--2" />
-
       <div className="game__container">
         <div className="game__header">
           <button className="game__back" onClick={onLeave}>
-            ← Leave
+            Leave
           </button>
           <div className="game__club-info">
             <span className="game__club-label">Club Code</span>
@@ -88,9 +85,7 @@ export default function Game({ socket, clubCode, playerSymbol, onLeave }) {
           </div>
           <div className="game__symbol-badge">
             <span className="game__symbol-text">You</span>
-            <span className={`game__symbol game__symbol--${playerSymbol}`}>
-              {playerSymbol === 'X' ? '❌' : '⭕'}
-            </span>
+            <span className="game__symbol">{playerSymbol}</span>
           </div>
         </div>
 
@@ -116,15 +111,19 @@ export default function Game({ socket, clubCode, playerSymbol, onLeave }) {
         />
 
         <div className="game__info">
-          <div className={`game__turn-dot ${currentTurn === playerSymbol ? 'game__turn-dot--active' : ''}`} />
+          <div
+            className={`game__turn-dot ${
+              currentTurn === playerSymbol ? 'game__turn-dot--active' : ''
+            }`}
+          />
           <span className="game__info-text">
-            {currentTurn === playerSymbol ? 'Make your move!' : 'Waiting for opponent...'}
+            {currentTurn === playerSymbol ? 'Make your move' : 'Waiting for opponent'}
           </span>
         </div>
 
         {gameOver && !showWinLoss && (
           <button className="game__play-again" onClick={handlePlayAgain}>
-            Play Again 🔄
+            Play Again
           </button>
         )}
       </div>
