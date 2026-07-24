@@ -3,7 +3,11 @@ import { io } from 'socket.io-client';
 import Home from './components/Home';
 import Game from './components/Game';
 
-const socket = io('http://localhost:3001');
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
+
+const socket = io(SOCKET_URL, {
+  transports: ['websocket', 'polling'],
+});
 
 export default function App() {
   const [screen, setScreen] = useState('home');

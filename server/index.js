@@ -3,15 +3,34 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 
+const PORT = process.env.PORT || 3001;
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  ...(process.env.CLIENT_URL
+    ? process.env.CLIENT_URL.split(',').map((url) => url.trim())
+    : []),
+];
+
 const app = express();
-app.use(cors());
+app.use(cors({ origin: allowedOrigins }));
+
+app.get('/', (_req, res) => {
+  res.json({ status: 'ok', message: 'Tick Tock server is running' });
+});
+
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok' });
+});
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: allowedOrigins,
     methods: ['GET', 'POST'],
   },
+  transports: ['websocket', 'polling'],
 });
 
 const WIN_PATTERNS = [
@@ -188,7 +207,6 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = 3001;
 httpServer.listen(PORT, () => {
-  console.log(`Tick Tock Server running on http://localhost:${PORT}`);
+  console.log(`Tick Tock Server running on port ${PORT}`);
 });
