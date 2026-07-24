@@ -1,0 +1,184 @@
+.game {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.game__bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  animation: float 8s ease-in-out infinite;
+}
+
+.game__bg-circle--1 {
+  width: 400px;
+  height: 400px;
+  background: #7b2ff7;
+  top: -100px;
+  right: -100px;
+}
+
+.game__bg-circle--2 {
+  width: 350px;
+  height: 350px;
+  background: #00fff9;
+  bottom: -100px;
+  left: -100px;
+  animation-delay: 4s;
+}
+
+.game__container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  animation: fadeInUp 0.6s ease;
+  z-index: 1;
+}
+
+.game__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.game__back {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.game__back:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.game__club-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game__club-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 2px;
+}
+
+.game__club-code {
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #00fff9, #ff00de);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.game__symbol-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.game__symbol-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.game__symbol {
+  font-size: 24px;
+}
+
+.game__status {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  transition: all 0.3s ease;
+  min-height: 36px;
+}
+
+.game__status--win {
+  animation: bounceIn 0.8s ease;
+  background: linear-gradient(135deg, #ffd700, #ffaa00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.game__status--lose {
+  color: #ff6b6b;
+  animation: fadeIn 0.8s ease;
+}
+
+.game__info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.game__turn-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.game__turn-dot--active {
+  background: #00ff88;
+  box-shadow: 0 0 12px #00ff88;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.game__info-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.game__play-again {
+  margin-top: 20px;
+  padding: 14px 36px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #00fff9, #00d4ff);
+  color: #0f0c29;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 255, 249, 0.3);
+  animation: fadeInUp 0.5s ease;
+  transition: all 0.3s ease;
+}
+
+.game__play-again:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 255, 249, 0.5);
+}
